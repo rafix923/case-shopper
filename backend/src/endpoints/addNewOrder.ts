@@ -26,7 +26,7 @@ export const addNewOrder = async (req: Request, res: Response): Promise<void> =>
             const getStock = await connection.select("qty_stock").from("Case_Products").where({ id: product.id });
             const stock = Number(getStock[0].qty_stock);
             if (stock < product.qty) {
-                throw new Error("Desulpas, mas não temos no estoque a quantidade solicitada.");
+                throw new Error(`Desculpas, mas só temos no estoque, ${stock} unidades do produto solicitado.`);
             }
         });
 
@@ -41,7 +41,7 @@ export const addNewOrder = async (req: Request, res: Response): Promise<void> =>
                 }
             );
 
-            const getStock = await connection.select("qty_stock").from("Case_products").where({ id: product.id });
+            const getStock = await connection.select("qty_stock").from("Case_Products").where({ id: product.id });
             const stock = Number(getStock[0].qty_stock);
 
             await connection("Case_Products").where({ id: product.id }).update({ qty_stock: stock - product.qty });
