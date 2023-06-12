@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
 import connection from "../dataBase/connections";
+import { TProduct } from "../models/Product";
 
 export const addNewOrder = async (req: Request, res: Response): Promise<void> => {
     let errorCode = 400;
     try {
         const delivery_date = req.body.delivery_date;
         const fk_client = req.body.fk_client;
-        const products: [] = req.body.products;
+        const products: TProduct[] = req.body.products;
 
         if (!delivery_date) {
             throw new Error("Necessário adicionar uma data válida.");
