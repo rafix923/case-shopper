@@ -1,3 +1,4 @@
 import app from "./app";
+import { addClient } from "./endpoints/addClient";
 
-app.get('')
+app.post('/client/add', addClient);
