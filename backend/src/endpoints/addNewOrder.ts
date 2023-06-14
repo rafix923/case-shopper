@@ -22,13 +22,14 @@ export const addNewOrder = async (req: Request, res: Response): Promise<void> =>
         };
 
         // Check stock before register order
-        await products.forEach(async product => {
-            const getStock = await connection.select("qty_stock").from("Case_Products").where({ id: product.id });
-            const stock = Number(getStock[0].qty_stock);
-            if (stock < product.qty) {
-                throw new Error(`Desculpas, mas só temos no estoque, ${stock} unidades do produto solicitado.`);
+        const idsProducts = products.map((product) => product.id);
+        const stockProducts = await connection.select("qty_stock").from("Case_Products").whereIn("id", idsProducts);
+
+        for (let i = 0; i < products.length; i++) {
+            if (products[i].qty > stockProducts[i].qty_stock) {
+                throw new Error("Um ou mais produtos do pedido está em falta. Verifique o estoque disponível.");
             }
-        });
+        };
 
         products.forEach(async product => {
             await connection("Case_Orders").insert(
