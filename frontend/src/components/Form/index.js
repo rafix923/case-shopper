@@ -5,6 +5,10 @@ function Form() {
   const [dataClient, isLoadingClient, errorClient] = useRequestData(
     "http://localhost:3003/client/list"
   );
+  const [dataProduct, isLoadinProduct, errorProduct] = useRequestData(
+    "http://localhost:3003/products/list"
+  );
+
   return (
     <form>
       <div>
@@ -23,9 +27,10 @@ function Form() {
         <label htmlFor="product">Produto:</label>
         <input id="product" list="productData"></input>
         <datalist id="productData">
-          <option>Mamão</option>
-          <option>Abacaxi</option>
-          <option>Banana</option>
+          {dataProduct &&
+            dataProduct.map((product) => {
+              return <option key={product.id}>{product.name}</option>;
+            })}
         </datalist>
         <label>Quantidade</label>
         <input id="qty" type="number"></input>
