@@ -1,15 +1,20 @@
 import React from "react";
+import { useRequestData } from "../../hooks/useRequestData";
 
 function Form() {
+  const [dataClient, isLoadingClient, errorClient] = useRequestData(
+    "http://localhost:3003/client/list"
+  );
   return (
     <form>
       <div>
         <label htmlFor="client">Nome:</label>
         <input id="client" list="dataList"></input>
         <datalist id="dataList">
-          <option>Rafael Lopes</option>
-          <option>Rodolpho Lopes</option>
-          <option>Ane Lopes</option>
+          {dataClient &&
+            dataClient.map((client) => {
+              return <option key={client.id}>{client.name}</option>;
+            })}
         </datalist>
         <button>Confirmar</button>
       </div>
