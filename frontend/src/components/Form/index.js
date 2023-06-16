@@ -16,6 +16,12 @@ function Form() {
     "http://localhost:3003/products/list"
   );
 
+  const selectClient =
+    !isLoadingClient &&
+    dataClient &&
+    dataClient.find((choosedClient) => {
+      return choosedClient.name === form.client;
+    });
   return (
     <form>
       <div>
@@ -33,7 +39,7 @@ function Form() {
               return <option key={client.id}>{client.name}</option>;
             })}
         </datalist>
-        <button>Confirmar</button>
+        {selectClient && <button>Confirmar</button>}
       </div>
       <hr />
       <div>
