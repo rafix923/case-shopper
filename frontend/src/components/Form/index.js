@@ -11,8 +11,15 @@ function Form() {
     deliveryDate: "",
   });
 
-  const [dataClient, isLoadingClient, errorClient, varCheck, setVarCheck] =
-    useRequestData("http://localhost:3003/client/list");
+  const [
+    dataClient,
+    isLoadingClient,
+    errorClient,
+    varCheck,
+    setVarCheck,
+    visebleButtonClient,
+    setVisibleButtonClient,
+  ] = useRequestData("http://localhost:3003/client/list");
 
   const [dataProduct, isLoadinProduct, errorProduct] = useRequestData(
     "http://localhost:3003/products/list"
@@ -39,8 +46,17 @@ function Form() {
         console.log(error.message);
       });
   };
+
+  const selectedClient = () => {
+    setVisibleButtonClient(!visebleButtonClient);
+  };
   return (
     <form>
+      <div>
+        {selectClient && !visebleButtonClient && (
+          <h2>Cliente:{selectClient.name}</h2>
+        )}
+      </div>
       <div>
         <label htmlFor="client">Nome:</label>
         <input
@@ -66,7 +82,16 @@ function Form() {
             Cadastrar
           </button>
         )}
-        {selectClient && <button>Confirmar</button>}
+        {selectClient && visebleButtonClient &&
+          <button
+            type="button"
+            onClick={() => {
+              selectedClient();
+            }}
+          >
+            Confirmar
+          </button>
+        }
       </div>
       <hr />
       <div>
