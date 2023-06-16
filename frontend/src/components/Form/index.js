@@ -10,9 +10,10 @@ function Form() {
     qty: 1,
     deliveryDate: "",
   });
-  const [dataClient, isLoadingClient, errorClient] = useRequestData(
-    "http://localhost:3003/client/list"
-  );
+
+  const [dataClient, isLoadingClient, errorClient, varCheck, setVarCheck] =
+    useRequestData("http://localhost:3003/client/list");
+
   const [dataProduct, isLoadinProduct, errorProduct] = useRequestData(
     "http://localhost:3003/products/list"
   );
@@ -26,11 +27,12 @@ function Form() {
 
   const registerNewClient = () => {
     const body = {
-      "name": form.client,
+      name: form.client,
     };
     axios
       .post("http://localhost:3003/client/add", body, {})
       .then((response) => {
+        setVarCheck(!varCheck);
         console.log(response);
       })
       .catch((error) => {
