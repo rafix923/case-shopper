@@ -6,6 +6,8 @@ export const useRequestData = (url, headers) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [varCheck, setVarCheck] = useState(false);
+  const [visebleButtonClient, setVisibleButtonClient] = useState(true);
+
   useEffect(() => {
     console.log("Ok!");
     setIsLoading(true);
@@ -20,5 +22,5 @@ export const useRequestData = (url, headers) => {
         setIsLoading(false);
       });
   }, [varCheck]);
-  return [data, isLoading, error, varCheck, setVarCheck];
+  return [data, isLoading, error, varCheck, setVarCheck, visebleButtonClient, setVisibleButtonClient];
 };
