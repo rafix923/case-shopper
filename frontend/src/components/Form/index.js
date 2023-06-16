@@ -39,6 +39,7 @@ function Form() {
               return <option key={client.id}>{client.name}</option>;
             })}
         </datalist>
+        {!selectClient && form.client.length > 8 && <button>Cadastrar</button>}
         {selectClient && <button>Confirmar</button>}
       </div>
       <hr />
