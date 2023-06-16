@@ -1,6 +1,7 @@
 import React from "react";
 import { useRequestData } from "../../hooks/useRequestData";
 import { useForm } from "../../hooks/useForm";
+import axios from "axios";
 
 function Form() {
   const [form, onChange, resetState] = useForm({
@@ -22,6 +23,20 @@ function Form() {
     dataClient.find((choosedClient) => {
       return choosedClient.name === form.client;
     });
+
+  const registerNewClient = () => {
+    const body = {
+      "name": form.client,
+    };
+    axios
+      .post("http://localhost:3003/client/add", body, {})
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
   return (
     <form>
       <div>
@@ -39,6 +54,16 @@ function Form() {
               return <option key={client.id}>{client.name}</option>;
             })}
         </datalist>
+        {!selectClient && form.client.length > 8 && (
+          <button
+            type="button"
+            onClick={() => {
+              registerNewClient();
+            }}
+          >
+            Cadastrar
+          </button>
+        )}
         {selectClient && <button>Confirmar</button>}
       </div>
       <hr />
