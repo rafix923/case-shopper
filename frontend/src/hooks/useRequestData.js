@@ -31,5 +31,7 @@ export const useRequestData = (url, headers) => {
     setVarCheck,
     visebleButtonClient,
     setVisibleButtonClient,
+    AddProductToList,
+    setAddProductToList
   ];
 };
