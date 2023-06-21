@@ -118,9 +118,15 @@ function Form() {
               return <option key={product.id}>{product.name}</option>;
             })}
         </datalist>
-        <label>Quantidade</label>
-        <input id="qty" type="number"></input>
-        <p>Valor Total: R$20,00</p>
+        <label htmlFor="qty">Quantidade</label>
+        <input
+          id="qty"
+          type="number"
+          name="qty"
+          value={form.qty}
+          onChange={onChange}
+        ></input>
+        <p>Valor Total: R$ {selectProduct && selectProduct.price * form.qty}</p>
         {selectProduct && <button>Confirmar</button>}
       </div>
       <hr />
