@@ -105,7 +105,13 @@ function Form() {
       <hr />
       <div>
         <label htmlFor="product">Produto:</label>
-        <input id="product" list="productData"></input>
+        <input
+          id="product"
+          list="productData"
+          name="product"
+          value={form.product}
+          onChange={onChange}
+        ></input>
         <datalist id="productData">
           {dataProduct &&
             dataProduct.map((product) => {
