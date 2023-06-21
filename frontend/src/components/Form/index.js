@@ -126,8 +126,15 @@ function Form() {
           value={form.qty}
           onChange={onChange}
         ></input>
-        <p>Valor Total: R$ {selectProduct && selectProduct.price * form.qty}</p>
+        <p>
+          Valor Total: R${" "}
+          {selectProduct &&
+            parseFloat(selectProduct.price * form.qty).toFixed(2)}
+        </p>
         {selectProduct && <button>Confirmar</button>}
+        {selectProduct && selectProduct.qty_stock < form.qty && (
+          <h3>Atenção! Produto sem estoque.</h3>
+        )}
       </div>
       <hr />
       <div>
