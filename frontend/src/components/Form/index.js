@@ -52,47 +52,49 @@ function Form() {
   };
   return (
     <form>
-      <div>
-        {selectClient && !visebleButtonClient && (
+      {selectClient && !visebleButtonClient && (
+        <div>
           <h2>Cliente:{selectClient.name}</h2>
-        )}
-      </div>
-      <div>
-        <label htmlFor="client">Nome:</label>
-        <input
-          id="client"
-          list="dataList"
-          onChange={onChange}
-          value={form.client}
-          name="client"
-        ></input>
-        <datalist id="dataList">
-          {dataClient &&
-            dataClient.map((client) => {
-              return <option key={client.id}>{client.name}</option>;
-            })}
-        </datalist>
-        {!selectClient && form.client.length > 8 && (
-          <button
-            type="button"
-            onClick={() => {
-              registerNewClient();
-            }}
-          >
-            Cadastrar
-          </button>
-        )}
-        {selectClient && visebleButtonClient &&
-          <button
-            type="button"
-            onClick={() => {
-              selectedClient();
-            }}
-          >
-            Confirmar
-          </button>
-        }
-      </div>
+        </div>
+      )}
+      {(selectClient && !visebleButtonClient) || (
+        <div>
+          <label htmlFor="client">Nome:</label>
+          <input
+            id="client"
+            list="dataList"
+            onChange={onChange}
+            value={form.client}
+            name="client"
+          ></input>
+          <datalist id="dataList">
+            {dataClient &&
+              dataClient.map((client) => {
+                return <option key={client.id}>{client.name}</option>;
+              })}
+          </datalist>
+          {!selectClient && form.client.length > 8 && (
+            <button
+              type="button"
+              onClick={() => {
+                registerNewClient();
+              }}
+            >
+              Cadastrar
+            </button>
+          )}
+          {selectClient && visebleButtonClient && (
+            <button
+              type="button"
+              onClick={() => {
+                selectedClient();
+              }}
+            >
+              Confirmar
+            </button>
+          )}
+        </div>
+      )}
       <hr />
       <div>
         <label htmlFor="product">Produto:</label>
