@@ -8,6 +8,7 @@ export const useRequestData = (url, headers) => {
   const [varCheck, setVarCheck] = useState(false);
   const [visebleButtonClient, setVisibleButtonClient] = useState(true);
   const [AddProductToList, setAddProductToList] = useState([]);
+  const [visibleButtonProduct, setVisibleButtonProduct] = useState(true);
 
   useEffect(() => {
     console.log("Ok!");
@@ -32,6 +33,8 @@ export const useRequestData = (url, headers) => {
     visebleButtonClient,
     setVisibleButtonClient,
     AddProductToList,
-    setAddProductToList
+    setAddProductToList,
+    visibleButtonProduct,
+    setVisibleButtonProduct,
   ];
 };
