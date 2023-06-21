@@ -50,6 +50,13 @@ function Form() {
   const selectedClient = () => {
     setVisibleButtonClient(!visebleButtonClient);
   };
+
+  const selectProduct =
+    !isLoadinProduct &&
+    dataProduct &&
+    dataProduct.find((choosedProduct) => {
+      return choosedProduct.name === form.product;
+    });
   return (
     <form>
       {selectClient && !visebleButtonClient && (
@@ -108,7 +115,7 @@ function Form() {
         <label>Quantidade</label>
         <input id="qty" type="number"></input>
         <p>Valor Total: R$20,00</p>
-        <button>Confirmar</button>
+        {selectProduct && <button>Confirmar</button>}
       </div>
       <hr />
       <div>
