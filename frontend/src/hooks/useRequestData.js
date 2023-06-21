@@ -7,6 +7,7 @@ export const useRequestData = (url, headers) => {
   const [error, setError] = useState("");
   const [varCheck, setVarCheck] = useState(false);
   const [visebleButtonClient, setVisibleButtonClient] = useState(true);
+  const [AddProductToList, setAddProductToList] = useState([]);
 
   useEffect(() => {
     console.log("Ok!");
@@ -22,5 +23,13 @@ export const useRequestData = (url, headers) => {
         setIsLoading(false);
       });
   }, [varCheck]);
-  return [data, isLoading, error, varCheck, setVarCheck, visebleButtonClient, setVisibleButtonClient];
+  return [
+    data,
+    isLoading,
+    error,
+    varCheck,
+    setVarCheck,
+    visebleButtonClient,
+    setVisibleButtonClient,
+  ];
 };
