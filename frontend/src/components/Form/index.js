@@ -21,8 +21,14 @@ function Form() {
     setVisibleButtonClient,
   ] = useRequestData("http://localhost:3003/client/list");
 
-  const [dataProduct, isLoadinProduct, errorProduct, visibleButtonProduct] =
-    useRequestData("http://localhost:3003/products/list");
+  const [
+    dataProduct,
+    isLoadinProduct,
+    errorProduct,
+    visibleButtonProduct,
+    AddProductToList,
+    setAddProductToList,
+  ] = useRequestData("http://localhost:3003/products/list");
 
   const selectClient =
     !isLoadingClient &&
@@ -56,6 +62,13 @@ function Form() {
     dataProduct.find((choosedProduct) => {
       return choosedProduct.name === form.product;
     });
+
+  const addProduct = () => {
+    const newProduct = selectProduct;
+    newProduct.qty = form.qty;
+    AddProductToList();
+  };
+
   return (
     <form>
       {selectClient && !visebleButtonClient && (
@@ -133,7 +146,14 @@ function Form() {
         {selectProduct &&
           !visibleButtonProduct &&
           selectProduct.qty_stock >= form.qty && (
-            <button type="button">Confirmar</button>
+            <button
+              type="button"
+              onClick={() => {
+                addProduct();
+              }}
+            >
+              Confirmar
+            </button>
           )}
         {selectProduct && selectProduct.qty_stock < form.qty && (
           <h3>Atenção! Produto sem estoque suficiente para esta compra.</h3>
