@@ -21,9 +21,13 @@ function Form() {
     setVisibleButtonClient,
   ] = useRequestData("http://localhost:3003/client/list");
 
-  const [dataProduct, isLoadinProduct, errorProduct] = useRequestData(
-    "http://localhost:3003/products/list"
-  );
+  const [
+    dataProduct,
+    isLoadinProduct,
+    errorProduct,
+    visibleButtonProduct,
+    setVisibleButtonProduct,
+  ] = useRequestData("http://localhost:3003/products/list");
 
   const selectClient =
     !isLoadingClient &&
@@ -131,7 +135,9 @@ function Form() {
           {selectProduct &&
             parseFloat(selectProduct.price * form.qty).toFixed(2)}
         </p>
-        {selectProduct && <button>Confirmar</button>}
+        {selectProduct &&
+          !visibleButtonProduct &&
+          selectProduct.qty_stock >= form.qty && <button>Confirmar</button>}
         {selectProduct && selectProduct.qty_stock < form.qty && (
           <h3>Atenção! Produto sem estoque.</h3>
         )}
