@@ -6,7 +6,7 @@ export const useRequestData = (url, headers) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [varCheck, setVarCheck] = useState(false);
-  const [visebleButtonClient, setVisibleButtonClient] = useState(true);
+  const [visibleButtonClient, setVisibleButtonClient] = useState(true);
   const [AddProductToList, setAddProductToList] = useState([]);
   const [visibleButtonProduct, setVisibleButtonProduct] = useState(true);
 
@@ -30,7 +30,7 @@ export const useRequestData = (url, headers) => {
     error,
     varCheck,
     setVarCheck,
-    visebleButtonClient,
+    visibleButtonClient,
     setVisibleButtonClient,
     AddProductToList,
     setAddProductToList,
