@@ -4,7 +4,7 @@ import Form from "../../components/Form";
 import Product from "../../components/Product";
 
 function Home() {
-  let title = "Boas vindas ao nosso Hortifruit";
+  let title = "Case Shopper Hortifruit";
   return (
     <div>
       <Header />
