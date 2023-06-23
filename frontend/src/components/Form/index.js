@@ -66,6 +66,7 @@ function Form() {
   const addProduct = () => {
     const newProduct = selectProduct;
     newProduct.qty = form.qty;
+    console.log(newProduct);
     AddProductToList();
   };
 
