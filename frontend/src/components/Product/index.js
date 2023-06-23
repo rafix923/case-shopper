@@ -1,39 +1,30 @@
 import React from "react";
 
-function Product({
-  product,
-  products,
-  setProducts,
-  productList,
-  setProductList,
-  removeProduct,
-}) {
-  const qtyUpdated = (event) => {
-    const currentQty = event.target.value;
-    const productUpdated = productList.map((p) => {
+function Product({ product, productList, setProductList, removeProduct }) {
+  const qtyUpdated = (e) => {
+    console.log(product.qty_stock);
+    const currenQty = e.target.value;
+    const productsUpdate = productList.map((p) => {
       if (p.id === product.id) {
-        p.qty = currentQty;
+        p.qty = currenQty;
       }
       return p;
     });
-    setProducts(productUpdated);
+    setProductList(productsUpdate);
   };
-
-  if (!product) {
-    return null;
-  }
 
   return (
     <div>
       <p>{product.name}</p>
       <input
         id="qty"
-        type="number"
+        type={"number"}
         name="qty"
         min="0"
+        max={product.qty_stock.toString()}
         value={product.qty}
         onChange={qtyUpdated}
-      />
+      ></input>
       <p>{parseFloat(product.price * product.qty).toFixed(2)}</p>
       <button
         type="button"
@@ -41,7 +32,7 @@ function Product({
           removeProduct(product.id);
         }}
       >
-        Excluir pedido
+        Remover produto
       </button>
     </div>
   );

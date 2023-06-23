@@ -3,7 +3,7 @@ import { useRequestData } from "../../hooks/useRequestData";
 import { useForm } from "../../hooks/useForm";
 import axios from "axios";
 
-function Form() {
+function Form({ productList, setProductList }) {
   const [form, onChange, resetState] = useForm({
     client: "",
     product: "",
@@ -21,14 +21,8 @@ function Form() {
     setVisibleButtonClient,
   ] = useRequestData("http://localhost:3003/client/list");
 
-  const [
-    dataProduct,
-    isLoadinProduct,
-    errorProduct,
-    visibleButtonProduct,
-    AddProductToList,
-    setAddProductToList,
-  ] = useRequestData("http://localhost:3003/products/list");
+  const [productData, isLoadingProduct, errorProduct, visibleButtonProduct] =
+    useRequestData("http://localhost:3003/products/list");
 
   const selectClient =
     !isLoadingClient &&
@@ -57,17 +51,16 @@ function Form() {
   };
 
   const selectProduct =
-    !isLoadinProduct &&
-    dataProduct &&
-    dataProduct.find((choosedProduct) => {
+    !isLoadingProduct &&
+    productData &&
+    productData.find((choosedProduct) => {
       return choosedProduct.name === form.product;
     });
 
   const addProduct = () => {
     const newProduct = selectProduct;
     newProduct.qty = form.qty;
-    console.log(newProduct);
-    AddProductToList();
+    setProductList([...productList, newProduct]);
   };
 
   return (
@@ -100,7 +93,7 @@ function Form() {
                 registerNewClient();
               }}
             >
-              Cadastrar
+              Cadastrar cliente
             </button>
           )}
           {selectClient && visebleButtonClient && (
@@ -116,50 +109,55 @@ function Form() {
         </div>
       )}
       <hr />
-      <div>
-        <label htmlFor="product">Produto:</label>
-        <input
-          id="product"
-          list="productData"
-          name="product"
-          value={form.product}
-          onChange={onChange}
-        ></input>
-        <datalist id="productData">
-          {dataProduct &&
-            dataProduct.map((product) => {
-              return <option key={product.id}>{product.name}</option>;
-            })}
-        </datalist>
-        <label htmlFor="qty">Quantidade</label>
-        <input
-          id="qty"
-          type="number"
-          name="qty"
-          value={form.qty}
-          onChange={onChange}
-        ></input>
-        <p>
-          Valor Total: R${" "}
+      {selectClient && !visebleButtonClient && (
+        <div id="select-product">
+          <label htmlFor="product">Produto:</label>
+          <input
+            id="product"
+            list="productData"
+            name="product"
+            value={form.product}
+            onChange={onChange}
+          ></input>
+          <datalist id="productData">
+            {isLoadingProduct && !productData && <option>Carregando..</option>}
+            {!isLoadingProduct &&
+              productData &&
+              productData.map((product) => {
+                return <option key={product.id}>{product.name}</option>;
+              })}
+          </datalist>
+          <label htmlFor="qty">Quantidade:</label>
+          <input
+            id="qty"
+            type={"number"}
+            name="qty"
+            value={form.qty}
+            onChange={onChange}
+          ></input>
+          <p>
+            R$:{" "}
+            {selectProduct &&
+              parseFloat(selectProduct.price * form.qty).toFixed(2)}
+          </p>
+
           {selectProduct &&
-            parseFloat(selectProduct.price * form.qty).toFixed(2)}
-        </p>
-        {selectProduct &&
-          !visibleButtonProduct &&
-          selectProduct.qty_stock >= form.qty && (
-            <button
-              type="button"
-              onClick={() => {
-                addProduct();
-              }}
-            >
-              Confirmar
-            </button>
+            !visibleButtonProduct &&
+            selectProduct.qty_stock >= form.qty && (
+              <button
+                type="button"
+                onClick={() => {
+                  addProduct();
+                }}
+              >
+                Adicionar produto
+              </button>
+            )}
+          {selectProduct && selectProduct.qty_stock < form.qty && (
+            <h3>Atenção! Produto sem estoque suficiente para esta compra.</h3>
           )}
-        {selectProduct && selectProduct.qty_stock < form.qty && (
-          <h3>Atenção! Produto sem estoque suficiente para esta compra.</h3>
-        )}
-      </div>
+        </div>
+      )}
       <hr />
       <div>
         <label htmlFor="deliveryDate">Data de entrega: (DD/MM/AAAA)</label>
