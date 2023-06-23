@@ -7,7 +7,6 @@ export const useRequestData = (url, headers) => {
   const [error, setError] = useState("");
   const [varCheck, setVarCheck] = useState(false);
   const [visibleButtonClient, setVisibleButtonClient] = useState(true);
-  const [AddProductToList, setAddProductToList] = useState([]);
   const [visibleButtonProduct, setVisibleButtonProduct] = useState(true);
 
   useEffect(() => {
@@ -32,8 +31,6 @@ export const useRequestData = (url, headers) => {
     setVarCheck,
     visibleButtonClient,
     setVisibleButtonClient,
-    AddProductToList,
-    setAddProductToList,
     visibleButtonProduct,
     setVisibleButtonProduct,
   ];
