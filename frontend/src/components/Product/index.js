@@ -6,12 +6,13 @@ function Product({
   setProducts,
   productList,
   setProductList,
+  removeProduct,
 }) {
   const qtyUpdated = (event) => {
     const currentQty = event.target.value;
     const productUpdated = productList.map((p) => {
       if (p.id === product.id) {
-        p.qty = product.qty;
+        p.qty = currentQty;
       }
       return p;
     });
@@ -34,7 +35,14 @@ function Product({
         onChange={qtyUpdated}
       />
       <p>R$ 8,00</p>
-      <button>Excluir pedido</button>
+      <button
+        type="button"
+        onClick={() => {
+          removeProduct(product.id);
+        }}
+      >
+        Excluir pedido
+      </button>
     </div>
   );
 }
