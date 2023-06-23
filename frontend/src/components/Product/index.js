@@ -34,7 +34,7 @@ function Product({
         value={product.qty}
         onChange={qtyUpdated}
       />
-      <p>R$ 8,00</p>
+      <p>{parseFloat(product.price * product.qty).toFixed(2)}</p>
       <button
         type="button"
         onClick={() => {
