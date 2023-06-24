@@ -2,11 +2,16 @@ import React from "react";
 
 function Product({ product, productList, setProductList, removeProduct }) {
   const qtyUpdated = (e) => {
-    console.log(product.qty_stock);
-    const currenQty = e.target.value;
+    const currentQty = e.target.value;
+    const maxQty = product.qty_stock;
+    if (currentQty > maxQty) {
+      e.target.value = maxQty;
+      return;
+    }
+
     const productsUpdate = productList.map((p) => {
       if (p.id === product.id) {
-        p.qty = currenQty;
+        p.qty = currentQty;
       }
       return p;
     });

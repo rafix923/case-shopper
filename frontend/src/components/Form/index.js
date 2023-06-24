@@ -136,7 +136,7 @@ function Form({ productList, setProductList }) {
             onChange={onChange}
           ></input>
           <p>
-            R$:{" "}
+            Valor Total: R$:{" "}
             {selectProduct &&
               parseFloat(selectProduct.price * form.qty).toFixed(2)}
           </p>
