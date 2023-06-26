@@ -1,9 +1,12 @@
 import React from "react";
+import axios from "axios";
 import { useRequestData } from "../../hooks/useRequestData";
 import { useForm } from "../../hooks/useForm";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { goToEndPage } from "../../routes/Coordinator";
 
 function Form({ productList, setProductList }) {
+  const navigate = useNavigate();
   const [form, onChange, resetState] = useForm({
     client: "",
     product: "",
@@ -61,6 +64,36 @@ function Form({ productList, setProductList }) {
     const newProduct = selectProduct;
     newProduct.qty = form.qty;
     setProductList([...productList, newProduct]);
+  };
+
+  const createOrder = (e) => {
+    e.preventDefault();
+    if (!productList || !form.deliveryDate || !selectClient) {
+      window.alert(
+        "Por favor, verifique se todos os dados foram preenchidos corretamente."
+      );
+    } else {
+      const deliveryDateDb = `${form.deliveryDateDb.split("/")[2]} - ${
+        form.deliveryDate.split("/")[1]
+      }-${form.deliveryDate.split("/")[0]}`;
+      const productListDb = productList.map((p) => {
+        return { id: p.id, qty: Number(p.qty) };
+      });
+      const body = {
+        fk_client: Number(selectClient.id),
+        delivery_date: deliveryDateDb,
+        products: productListDb,
+      };
+      axios
+        .post("http://localhost:3003/order/add/new", body, {})
+        .then((response) => {
+          console.log(response);
+          goToEndPage(navigate);
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    }
   };
 
   return (
@@ -161,8 +194,13 @@ function Form({ productList, setProductList }) {
       <hr />
       <div>
         <label htmlFor="deliveryDate">Data de entrega: (DD/MM/AAAA)</label>
-        <input id="deliveryDate"></input>
-        <button>Confirmar Pedido</button>
+        <input
+          id="deliveryDate"
+          name="deliveryDate"
+          onChange={onChange}
+          value={form.deliveryDate}
+        ></input>
+        <button type="submit">Confirmar Pedido</button>
       </div>
     </form>
   );
