@@ -1,10 +1,34 @@
 body {
     margin: 0;
     padding: 0;
-    #header-title{
-      font-family: 'Caprasimo', cursive;
-      font-weight: 100;
-    }
+
+  #header-title{
+  font-family: 'Kablammo', cursive;
+  font-weight: 600;
+  };
+    
+  #home-title{
+  font-family: 'Caprasimo', cursive;
+  font-weight: 200;
+};
+
+@media (max-width: 480px) { 
+  #header-title {
+    font-size: 1.3rem;
+    letter-spacing: normal;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  };
+
+  #home-title{
+    display: flex;
+    font-size: 1rem;
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+    padding: 10px;
+    font-family: 'Caprasimo', cursive;
+  };
+}
   }
   
   

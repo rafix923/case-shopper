@@ -26,6 +26,7 @@ font-size: 1rem;
     h1 {
       font-size: 1.3rem;
       letter-spacing: normal;
+      font-family: 'Times New Roman', Times, serif;
     }
   }
 `;
