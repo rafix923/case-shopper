@@ -192,16 +192,18 @@ function Form({ productList, setProductList }) {
         </div>
       )}
       <hr />
-      <div>
-        <label htmlFor="deliveryDate">Data de entrega: (DD/MM/AAAA)</label>
-        <input
-          id="deliveryDate"
-          name="deliveryDate"
-          onChange={onChange}
-          value={form.deliveryDate}
-        ></input>
-        <button type="submit">Confirmar Pedido</button>
-      </div>
+      {productList.length > 0 &&
+        <div>
+          <label htmlFor="deliveryDate">Data de entrega: (DD/MM/AAAA)</label>
+          <input
+            id="deliveryDate"
+            name="deliveryDate"
+            onChange={onChange}
+            value={form.deliveryDate}
+          ></input>
+          <button type="submit">Confirmar Pedido</button>
+        </div>
+      }
     </form>
   );
 }
