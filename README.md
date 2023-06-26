@@ -1,4 +1,4 @@
-# case-shopper
+# Case-Shopper
 
 # API
 
