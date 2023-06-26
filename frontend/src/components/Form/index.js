@@ -73,16 +73,16 @@ function Form({ productList, setProductList }) {
         "Por favor, verifique se todos os dados foram preenchidos corretamente."
       );
     } else {
-      const deliveryDateDb = `${form.deliveryDateDb.split("/")[2]} - ${
+      const deliveryDateDb = `${form.deliveryDate.split("/")[2]} - ${
         form.deliveryDate.split("/")[1]
       }-${form.deliveryDate.split("/")[0]}`;
       const productListDb = productList.map((p) => {
-        return { id: p.id, qty: Number(p.qty) };
+        return { "id": p.id, "qty": Number(p.qty) };
       });
       const body = {
-        fk_client: Number(selectClient.id),
-        delivery_date: deliveryDateDb,
-        products: productListDb,
+        "fk_client": Number(selectClient.id),
+        "delivery_date": deliveryDateDb,
+        "products": productListDb,
       };
       axios
         .post("http://localhost:3003/order/add/new", body, {})
@@ -97,7 +97,7 @@ function Form({ productList, setProductList }) {
   };
 
   return (
-    <form>
+    <form onSubmit={createOrder}>
       {selectClient && !visebleButtonClient && (
         <div>
           <h2>Cliente:{selectClient.name}</h2>
