@@ -1,11 +1,12 @@
 import React from "react";
+import { HeaderStyled } from "./style";
 
 function Header() {
-  let title = "This is the header";
+  let title = "Case Shopper Hortifruit";
   return (
-    <div>
-      <p>{title}</p>
-    </div>
+    <HeaderStyled>
+      <h1 id="header-title">{title}</h1>
+    </HeaderStyled>
   );
 }
 
