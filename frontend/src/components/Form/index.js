@@ -4,6 +4,7 @@ import { useRequestData } from "../../hooks/useRequestData";
 import { useForm } from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import { goToEndPage } from "../../routes/Coordinator";
+import { BASE_URL } from "../../constants/url.JS";
 
 function Form({ productList, setProductList }) {
   const navigate = useNavigate();
@@ -22,10 +23,10 @@ function Form({ productList, setProductList }) {
     setVarCheck,
     visebleButtonClient,
     setVisibleButtonClient,
-  ] = useRequestData("http://localhost:3003/client/list");
+  ] = useRequestData(`${BASE_URL}/client/list`);
 
   const [productData, isLoadingProduct, errorProduct, visibleButtonProduct] =
-    useRequestData("http://localhost:3003/products/list");
+    useRequestData(`${BASE_URL}/products/list`);
 
   const selectClient =
     !isLoadingClient &&
@@ -39,7 +40,7 @@ function Form({ productList, setProductList }) {
       name: form.client,
     };
     axios
-      .post("http://localhost:3003/client/add", body, {})
+      .post(`${BASE_URL}/client/add`, body, {})
       .then((response) => {
         setVarCheck(!varCheck);
         console.log(response);
@@ -85,7 +86,7 @@ function Form({ productList, setProductList }) {
         "products": productListDb,
       };
       axios
-        .post("http://localhost:3003/order/add/new", body, {})
+        .post(`${BASE_URL}/order/add/new`, body, {})
         .then((response) => {
           console.log(response);
           goToEndPage(navigate);
@@ -192,7 +193,7 @@ function Form({ productList, setProductList }) {
         </div>
       )}
       <hr />
-      {productList.length > 0 &&
+      {productList.length > 0 && (
         <div>
           <label htmlFor="deliveryDate">Data de entrega: (DD/MM/AAAA)</label>
           <input
@@ -203,7 +204,7 @@ function Form({ productList, setProductList }) {
           ></input>
           <button type="submit">Confirmar Pedido</button>
         </div>
-      }
+      )}
     </form>
   );
 }

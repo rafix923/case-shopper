@@ -1,0 +1,1 @@
+export const BASE_URL = "https://case-shopper-backend-62u3limmj-rafix923.vercel.app";
