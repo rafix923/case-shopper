@@ -5,7 +5,7 @@ import { useForm } from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import { goToEndPage } from "../../routes/Coordinator";
 import { BASE_URL } from "../../constants/url/baseUrl";
-import { FormMainContainer} from "./style";
+
 function Form({ productList, setProductList }) {
   const navigate = useNavigate();
   const [form, onChange, resetState] = useForm({
@@ -80,6 +80,7 @@ function Form({ productList, setProductList }) {
       const productListDb = productList.map((p) => {
         return { "id": p.id, "qty": Number(p.qty) };
       });
+      
       const body = {
         "fk_client": Number(selectClient.id),
         "delivery_date": deliveryDateDb,
@@ -98,7 +99,7 @@ function Form({ productList, setProductList }) {
   };
 
   return (
-    <FormMainContainer onSubmit={createOrder}>
+    <div onSubmit={createOrder}>
       {selectClient && !visebleButtonClient && (
         <div>
           <h2>Cliente:{selectClient.name}</h2>
@@ -142,7 +143,6 @@ function Form({ productList, setProductList }) {
           )}
         </div>
       )}
-      {/* <hr /> */}
       {selectClient && !visebleButtonClient && (
         <div id="select-product">
           <label htmlFor="product">Produto:</label>
@@ -192,7 +192,6 @@ function Form({ productList, setProductList }) {
           )}
         </div>
       )}
-      {/* <hr /> */}
       {productList.length > 0 && (
         <div>
           <label htmlFor="deliveryDate">Data de entrega: (DD/MM/AAAA)</label>
@@ -205,7 +204,7 @@ function Form({ productList, setProductList }) {
           <button type="submit">Confirmar Pedido</button>
         </div>
       )}
-    </FormMainContainer>
+    </div>
   );
 }
 
