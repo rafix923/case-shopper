@@ -5,7 +5,7 @@ import { useForm } from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import { goToEndPage } from "../../routes/Coordinator";
 import { BASE_URL } from "../../constants/url/baseUrl";
-import { BoxClient, FormMainContainer } from "./style";
+import { BoxClient, FormMainContainer, SelectedClient } from "./style";
 
 function Form({ productList, setProductList }) {
   const navigate = useNavigate();
@@ -101,9 +101,9 @@ function Form({ productList, setProductList }) {
   return (
     <FormMainContainer onSubmit={createOrder}>
       {selectClient && !visebleButtonClient && (
-        <div>
-          <h2>Cliente:{selectClient.name}</h2>
-        </div>
+        <SelectedClient>
+          <h2>Cliente: {selectClient.name}</h2>
+        </SelectedClient>
       )}
       {(selectClient && !visebleButtonClient) || (
         <BoxClient>

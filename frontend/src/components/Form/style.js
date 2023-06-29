@@ -32,5 +32,14 @@ gap: 10px;
 width: 20vw;
 margin: 0 auto;
 padding: 10px 90px;
-color: aliceblue;
+color: #fff;
+`;
+
+export const SelectedClient = styled.div`
+display: flex;
+justify-content: space-evenly;
+background-color: aliceblue;
+border: solid 1px gray;
+border-radius: 30px;
+margin-bottom: 20px;
 `;
