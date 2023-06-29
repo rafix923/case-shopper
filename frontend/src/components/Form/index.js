@@ -5,7 +5,8 @@ import { useForm } from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import { goToEndPage } from "../../routes/Coordinator";
 import { BASE_URL } from "../../constants/url/baseUrl";
-import { FormMainContainer} from "./style";
+import { BoxClient, FormMainContainer } from "./style";
+
 function Form({ productList, setProductList }) {
   const navigate = useNavigate();
   const [form, onChange, resetState] = useForm({
@@ -105,44 +106,45 @@ function Form({ productList, setProductList }) {
         </div>
       )}
       {(selectClient && !visebleButtonClient) || (
-        <div>
-          <label htmlFor="client">Nome:</label>
-          <input
-            id="client"
-            list="dataList"
-            onChange={onChange}
-            value={form.client}
-            name="client"
-          ></input>
-          <datalist id="dataList">
-            {dataClient &&
-              dataClient.map((client) => {
-                return <option key={client.id}>{client.name}</option>;
-              })}
-          </datalist>
-          {!selectClient && form.client.length > 8 && (
-            <button
-              type="button"
-              onClick={() => {
-                registerNewClient();
-              }}
-            >
-              Cadastrar cliente
-            </button>
-          )}
-          {selectClient && visebleButtonClient && (
-            <button
-              type="button"
-              onClick={() => {
-                selectedClient();
-              }}
-            >
-              Confirmar
-            </button>
-          )}
-        </div>
+        <BoxClient>
+          <div id="content">
+            <label htmlFor="client">Nome:</label>
+            <input
+              id="client"
+              list="dataList"
+              onChange={onChange}
+              value={form.client}
+              name="client"
+            ></input>
+            <datalist id="dataList">
+              {dataClient &&
+                dataClient.map((client) => {
+                  return <option key={client.id}>{client.name}</option>;
+                })}
+            </datalist>
+            {!selectClient && form.client.length > 8 && (
+              <button
+                type="button"
+                onClick={() => {
+                  registerNewClient();
+                }}
+              >
+                Cadastrar cliente
+              </button>
+            )}
+            {selectClient && visebleButtonClient && (
+              <button
+                type="button"
+                onClick={() => {
+                  selectedClient();
+                }}
+              >
+                Confirmar
+              </button>
+            )}
+          </div>
+        </BoxClient>
       )}
-      {/* <hr /> */}
       {selectClient && !visebleButtonClient && (
         <div id="select-product">
           <label htmlFor="product">Produto:</label>
@@ -192,7 +194,6 @@ function Form({ productList, setProductList }) {
           )}
         </div>
       )}
-      {/* <hr /> */}
       {productList.length > 0 && (
         <div>
           <label htmlFor="deliveryDate">Data de entrega: (DD/MM/AAAA)</label>
