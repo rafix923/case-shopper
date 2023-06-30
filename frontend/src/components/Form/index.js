@@ -5,7 +5,12 @@ import { useForm } from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import { goToEndPage } from "../../routes/Coordinator";
 import { BASE_URL } from "../../constants/url/baseUrl";
-import { BoxClient, FormMainContainer, SelectedClient } from "./style";
+import {
+  BoxClient,
+  FormMainContainer,
+  SelectedClient,
+  BoxProduct,
+} from "./style";
 
 function Form({ productList, setProductList }) {
   const navigate = useNavigate();
@@ -146,53 +151,57 @@ function Form({ productList, setProductList }) {
         </BoxClient>
       )}
       {selectClient && !visebleButtonClient && (
-        <div id="select-product">
-          <label htmlFor="product">Produto:</label>
-          <input
-            id="product"
-            list="productData"
-            name="product"
-            value={form.product}
-            onChange={onChange}
-          ></input>
-          <datalist id="productData">
-            {isLoadingProduct && !productData && <option>Carregando..</option>}
-            {!isLoadingProduct &&
-              productData &&
-              productData.map((product) => {
-                return <option key={product.id}>{product.name}</option>;
-              })}
-          </datalist>
-          <label htmlFor="qty">Quantidade:</label>
-          <input
-            id="qty"
-            type={"number"}
-            name="qty"
-            value={form.qty}
-            onChange={onChange}
-          ></input>
-          <p>
-            Valor Total: R$:{" "}
-            {selectProduct &&
-              parseFloat(selectProduct.price * form.qty).toFixed(2)}
-          </p>
+        <BoxProduct>
+          <div id="select-product">
+            <label htmlFor="product">Produto:</label>
+            <input
+              id="product"
+              list="productData"
+              name="product"
+              value={form.product}
+              onChange={onChange}
+            ></input>
+            <datalist id="productData">
+              {isLoadingProduct && !productData && (
+                <option>Carregando..</option>
+              )}
+              {!isLoadingProduct &&
+                productData &&
+                productData.map((product) => {
+                  return <option key={product.id}>{product.name}</option>;
+                })}
+            </datalist>
+            <label htmlFor="qty">Quantidade:</label>
+            <input
+              id="qty"
+              type={"number"}
+              name="qty"
+              value={form.qty}
+              onChange={onChange}
+            ></input>
+            <p>
+              Valor Total: R$:{" "}
+              {selectProduct &&
+                parseFloat(selectProduct.price * form.qty).toFixed(2)}
+            </p>
 
-          {selectProduct &&
-            !visibleButtonProduct &&
-            selectProduct.qty_stock >= form.qty && (
-              <button
-                type="button"
-                onClick={() => {
-                  addProduct();
-                }}
-              >
-                Adicionar produto
-              </button>
+            {selectProduct &&
+              !visibleButtonProduct &&
+              selectProduct.qty_stock >= form.qty && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    addProduct();
+                  }}
+                >
+                  Adicionar produto
+                </button>
+              )}
+            {selectProduct && selectProduct.qty_stock < form.qty && (
+              <h3>Atenção! Produto sem estoque suficiente para esta compra.</h3>
             )}
-          {selectProduct && selectProduct.qty_stock < form.qty && (
-            <h3>Atenção! Produto sem estoque suficiente para esta compra.</h3>
-          )}
-        </div>
+          </div>
+        </BoxProduct>
       )}
       {productList.length > 0 && (
         <div>
