@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { primaryColor } from "../../constants/colors/colors";
+import { primaryColor, secondaryColor } from "../../constants/colors/colors";
 
 export const FormMainContainer = styled.form`
 height: 100vh;
@@ -42,4 +42,21 @@ background-color: aliceblue;
 border: solid 1px gray;
 border-radius: 30px;
 margin-bottom: 20px;
+`;
+
+export const BoxProduct = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+width: 30vw;
+margin: 0 auto;
+padding: 10px 90px;
+color: #fff;
+background: ${secondaryColor} ;
+padding: 60px;
+border-radius: 30px;
+
+#product}
+
 `;
