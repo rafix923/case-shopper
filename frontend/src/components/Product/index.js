@@ -1,4 +1,5 @@
 import React from "react";
+import { SelectedProduct } from "./style";
 
 function Product({ product, productList, setProductList, removeProduct }) {
   const qtyUpdated = (e) => {
@@ -19,7 +20,7 @@ function Product({ product, productList, setProductList, removeProduct }) {
   };
 
   return (
-    <div>
+    <SelectedProduct>
       <p>{product.name}</p>
       <input
         id="qty"
@@ -39,7 +40,7 @@ function Product({ product, productList, setProductList, removeProduct }) {
       >
         Remover produto
       </button>
-    </div>
+    </SelectedProduct>
   );
 }
 
