@@ -7,7 +7,7 @@ export const HeaderStyled = styled.div`
 display: flex;
 align-items: center;
 justify-content: center;
-height: 9vh;
+height: 12vh;
 background: ${secondaryColor};
 color: ${thirdColor};
 text-transform: uppercase;
