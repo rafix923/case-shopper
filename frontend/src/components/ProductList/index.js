@@ -1,6 +1,6 @@
 import React from "react";
 import Product from "../Product";
-import { OrderList } from "./style";
+import { OrderList, Sum } from "./style";
 
 function ProductList({ productList, setProductList }) {
   const removeProduct = (id) => {
@@ -31,7 +31,7 @@ function ProductList({ productList, setProductList }) {
               />
             );
           })}
-        {productList.length > 0 && <p>Total: R$ {soma.toFixed(2)}</p>}
+        {productList.length > 0 && <Sum>Total: R$ {soma.toFixed(2)}</Sum>}
       </div>
     </OrderList>
   );
