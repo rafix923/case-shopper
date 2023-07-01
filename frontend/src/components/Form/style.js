@@ -74,6 +74,7 @@ padding: 60px;
  justify-content: center;
  align-items: center;
  width: 100vw;
+ font-size: 1.2rem;
 }
 
 input{
