@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import { primaryColor, secondaryColor, thirdColor } from "../../constants/colors/colors";
+import {
+  primaryColor,
+  secondaryColor,
+  thirdColor,
+} from "../../constants/colors/colors";
 
 export const FormMainContainer = styled.form`
 height: 100vh;
@@ -77,6 +81,32 @@ input{
 }
 
  button{
+    background-color: ${thirdColor};
+    margin-left: 10px;
+    padding: 6px;
+    border: 1px solid grey;
+    border-radius: 9px;
+ }
+`;
+
+export const DeliveryDate = styled.div`
+display: flex;
+justify-content: center;
+margin-top: 30px;
+padding: 20px;
+
+label{
+  font-size: 1.1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-right: 10px;
+}
+
+input{
+  margin-right: 10px;
+
+}
+
+button{
     background-color: ${thirdColor};
     margin-left: 10px;
     padding: 6px;
