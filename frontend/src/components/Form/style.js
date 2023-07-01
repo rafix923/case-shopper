@@ -95,6 +95,8 @@ display: flex;
 justify-content: center;
 margin-top: 30px;
 padding: 20px;
+color: #fff;
+font-weight: 500;
 
 label{
   font-size: 1.1rem;
