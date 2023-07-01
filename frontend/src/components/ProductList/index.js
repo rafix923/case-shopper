@@ -18,7 +18,7 @@ function ProductList({ productList, setProductList }) {
   return (
     <OrderList>
       <div>
-        {productList.length > 0 && <h2>Lista de Pedidos</h2>}
+        {productList.length > 0 && <h2>Lista de Pedidos:</h2>}
         {productList &&
           productList.map((p) => {
             return (
