@@ -8,6 +8,7 @@ margin: 0;
 padding: 0;
 margin-top: 0;
 background: ${primaryColor};
+overflow: hidden;
 
 @media (max-width: 480px) { 
  #content{
@@ -32,7 +33,7 @@ margin: 12px 0;
 color: #fff;
 
 input{
-  margin: 0 0 0 12px;
+  margin-left: 12px;
 }
 
  button{
@@ -41,6 +42,7 @@ input{
     margin: 0 10px;
     border: 1px solid grey;
     border-radius: 9px;
+    font-size: 1rem;
  }
 `;
 
@@ -64,24 +66,21 @@ background: ${secondaryColor} ;
 padding: 60px;
 
 #select-product{
- display: inline-flex;
- justify-content: space-evenly;
- width: 50vw;
+ display: flex;
+ justify-content: center;
  align-items: center;
+ width: 100vw;
 }
 
-@media (max-width: 480px) { 
-width: fit-content;
-/* flex-direction: column; */
-/* flex-wrap: wrap;
-justify-content: center; */
-/* align-items: center; */
-/* gap: 5px; */
-/* width: 100vw; */
-/* color: aliceblue;
-border: solid 1px gray; 
-border-radius: 50px;
-padding: 10px 15px; */
+input{
+  margin: 0 10px;
+}
 
-  }
+ button{
+    background-color: ${thirdColor};
+    margin-left: 10px;
+    padding: 6px;
+    border: 1px solid grey;
+    border-radius: 9px;
+ }
 `;

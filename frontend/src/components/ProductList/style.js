@@ -7,5 +7,4 @@ display: flex;
 justify-content: center;
 width: 100vw;
 color: #fff;
-/* background: ${secondaryColor} ; */
 `;
