@@ -10,6 +10,7 @@ import {
   FormMainContainer,
   SelectedClient,
   BoxProduct,
+  DeliveryDate,
 } from "./style";
 
 function Form({ productList, setProductList }) {
@@ -204,7 +205,7 @@ function Form({ productList, setProductList }) {
         </BoxProduct>
       )}
       {productList.length > 0 && (
-        <div>
+        <DeliveryDate>
           <label htmlFor="deliveryDate">Data de entrega: (DD/MM/AAAA)</label>
           <input
             id="deliveryDate"
@@ -213,7 +214,7 @@ function Form({ productList, setProductList }) {
             value={form.deliveryDate}
           ></input>
           <button type="submit">Confirmar Pedido</button>
-        </div>
+        </DeliveryDate>
       )}
     </FormMainContainer>
   );
