@@ -1,5 +1,6 @@
 import React from "react";
 import Product from "../Product";
+import { OrderList } from "./style";
 
 function ProductList({ productList, setProductList }) {
   const removeProduct = (id) => {
@@ -15,22 +16,24 @@ function ProductList({ productList, setProductList }) {
     });
   }
   return (
-    <div>
-      {productList.length > 0 && <h2>Lista de Pedidos</h2>}
-      {productList &&
-        productList.map((p) => {
-          return (
-            <Product
-              key={p.id}
-              product={p}
-              productList={productList}
-              setProductList={setProductList}
-              removeProduct={removeProduct}
-            />
-          );
-        })}
-      {productList.length > 0 && <p>Total: R$ {soma.toFixed(2)}</p>}
-    </div>
+    <OrderList>
+      <div>
+        {productList.length > 0 && <h2>Lista de Pedidos</h2>}
+        {productList &&
+          productList.map((p) => {
+            return (
+              <Product
+                key={p.id}
+                product={p}
+                productList={productList}
+                setProductList={setProductList}
+                removeProduct={removeProduct}
+              />
+            );
+          })}
+        {productList.length > 0 && <p>Total: R$ {soma.toFixed(2)}</p>}
+      </div>
+    </OrderList>
   );
 }
 

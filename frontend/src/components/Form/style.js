@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { primaryColor, secondaryColor } from "../../constants/colors/colors";
+import { primaryColor, secondaryColor, thirdColor } from "../../constants/colors/colors";
 
 export const FormMainContainer = styled.form`
 height: 100vh;
@@ -28,20 +28,27 @@ export const BoxClient = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
-gap: 10px;
-width: 20vw;
-margin: 0 auto;
-padding: 10px 90px;
+margin: 12px 0;
 color: #fff;
+
+input{
+  margin: 0 0 0 12px;
+}
+
+ button{
+    background-color: ${thirdColor};
+    padding: 6px;
+    margin: 0 10px;
+    border: 1px solid grey;
+    border-radius: 9px;
+ }
 `;
 
 export const SelectedClient = styled.div`
 display: flex;
 justify-content: space-evenly;
 background-color: aliceblue;
-border: solid 1px gray;
-border-radius: 30px;
-margin-bottom: 20px;
+margin: 0;
 `;
 
 export const BoxProduct = styled.div`
@@ -49,14 +56,32 @@ display: flex;
 justify-content: center;
 align-items: center;
 gap: 10px;
-width: 30vw;
+width: 100vw;
 margin: 0 auto;
 padding: 10px 90px;
 color: #fff;
 background: ${secondaryColor} ;
 padding: 60px;
-border-radius: 30px;
 
-#product}
+#select-product{
+ display: inline-flex;
+ justify-content: space-evenly;
+ width: 50vw;
+ align-items: center;
+}
 
+@media (max-width: 480px) { 
+width: fit-content;
+/* flex-direction: column; */
+/* flex-wrap: wrap;
+justify-content: center; */
+/* align-items: center; */
+/* gap: 5px; */
+/* width: 100vw; */
+/* color: aliceblue;
+border: solid 1px gray; 
+border-radius: 50px;
+padding: 10px 15px; */
+
+  }
 `;
