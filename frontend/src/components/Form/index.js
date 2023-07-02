@@ -15,25 +15,26 @@ import {
 
 function Form({ productList, setProductList }) {
   const navigate = useNavigate();
-  const [form, onChange, resetState] = useForm({
+  const [form, onChange] = useForm({
     client: "",
     product: "",
     qty: 1,
     deliveryDate: "",
   });
 
+  // Endpoint responsible for showing the client list
   const [
     dataClient,
-    isLoadingClient,
-    errorClient,
     varCheck,
     setVarCheck,
     visibleButtonClient,
     setVisibleButtonClient,
   ] = useRequestData(`${BASE_URL}/client/list`);
 
-  const [productData, isLoadingProduct, errorProduct, visibleButtonProduct] =
-    useRequestData(`${BASE_URL}/products/list`);
+  // Endpoint responsible for showing the product list
+  const [productData, isLoadingProduct, visibleButtonProduct] = useRequestData(
+    `${BASE_URL}/products/list`
+  );
 
   const [selectClient, setSelectClient] = useState(null);
   const [selectProduct, setSelectProduct] = useState(null);
@@ -47,10 +48,12 @@ function Form({ productList, setProductList }) {
     }
   }, [dataClient, form.client]);
 
+  // Add new client to clients list
   const registerNewClient = () => {
     const body = {
       name: form.client,
     };
+    // Endpoint responsible for adding new client to the list
     axios
       .post(`${BASE_URL}/client/add`, body, {})
       .then((response) => {
@@ -75,12 +78,14 @@ function Form({ productList, setProductList }) {
     }
   }, [productData, form.product]);
 
+  // Add Product to a list of products
   const addProduct = () => {
     const newProduct = selectProduct;
     newProduct.qty = form.qty;
     setProductList([...productList, newProduct]);
   };
 
+  // Send order after add delivery date
   const createOrder = (e) => {
     e.preventDefault();
     if (!productList || !form.deliveryDate || !selectClient) {
@@ -107,12 +112,12 @@ function Form({ productList, setProductList }) {
       const productListDb = productList.map((p) => {
         return { id: p.id, qty: Number(p.qty) };
       });
-
       const body = {
         fk_client: Number(selectClient.id),
         delivery_date: deliveryDateDb,
         products: productListDb,
       };
+      // Endpoint responsible for creating an order
       axios
         .post(`${BASE_URL}/order/add/new`, body, {})
         .then((response) => {
