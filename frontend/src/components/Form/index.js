@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRequestData } from "../../hooks/useRequestData";
 import { useForm } from "../../hooks/useForm";
@@ -28,19 +28,24 @@ function Form({ productList, setProductList }) {
     errorClient,
     varCheck,
     setVarCheck,
-    visebleButtonClient,
+    visibleButtonClient,
     setVisibleButtonClient,
   ] = useRequestData(`${BASE_URL}/client/list`);
 
   const [productData, isLoadingProduct, errorProduct, visibleButtonProduct] =
     useRequestData(`${BASE_URL}/products/list`);
 
-  const selectClient =
-    !isLoadingClient &&
-    dataClient &&
-    dataClient.find((choosedClient) => {
-      return choosedClient.name === form.client;
-    });
+  const [selectClient, setSelectClient] = useState(null);
+  const [selectProduct, setSelectProduct] = useState(null);
+
+  useEffect(() => {
+    if (dataClient) {
+      const chosenClient = dataClient.find(
+        (client) => client.name === form.client
+      );
+      setSelectClient(chosenClient);
+    }
+  }, [dataClient, form.client]);
 
   const registerNewClient = () => {
     const body = {
@@ -58,15 +63,17 @@ function Form({ productList, setProductList }) {
   };
 
   const selectedClient = () => {
-    setVisibleButtonClient(!visebleButtonClient);
+    setVisibleButtonClient(!visibleButtonClient);
   };
 
-  const selectProduct =
-    !isLoadingProduct &&
-    productData &&
-    productData.find((choosedProduct) => {
-      return choosedProduct.name === form.product;
-    });
+  useEffect(() => {
+    if (productData) {
+      const chosenProduct = productData.find(
+        (product) => product.name === form.product
+      );
+      setSelectProduct(chosenProduct);
+    }
+  }, [productData, form.product]);
 
   const addProduct = () => {
     const newProduct = selectProduct;
@@ -85,12 +92,12 @@ function Form({ productList, setProductList }) {
         form.deliveryDate.split("/")[1]
       }-${form.deliveryDate.split("/")[0]}`;
       const productListDb = productList.map((p) => {
-        return { "id": p.id, "qty": Number(p.qty) };
+        return { id: p.id, qty: Number(p.qty) };
       });
       const body = {
-        "fk_client": Number(selectClient.id),
-        "delivery_date": deliveryDateDb,
-        "products": productListDb,
+        fk_client: Number(selectClient.id),
+        delivery_date: deliveryDateDb,
+        products: productListDb,
       };
       axios
         .post(`${BASE_URL}/order/add/new`, body, {})
@@ -106,12 +113,12 @@ function Form({ productList, setProductList }) {
 
   return (
     <FormMainContainer onSubmit={createOrder}>
-      {selectClient && !visebleButtonClient && (
+      {selectClient && !visibleButtonClient && (
         <SelectedClient>
           <h2>Cliente: {selectClient.name}</h2>
         </SelectedClient>
       )}
-      {(selectClient && !visebleButtonClient) || (
+      {(selectClient && !visibleButtonClient) || (
         <BoxClient>
           <div id="content">
             <label htmlFor="client">Nome:</label>
@@ -138,7 +145,7 @@ function Form({ productList, setProductList }) {
                 Cadastrar cliente
               </button>
             )}
-            {selectClient && visebleButtonClient && (
+            {selectClient && visibleButtonClient && (
               <button
                 type="button"
                 onClick={() => {
@@ -151,7 +158,7 @@ function Form({ productList, setProductList }) {
           </div>
         </BoxClient>
       )}
-      {selectClient && !visebleButtonClient && (
+      {selectClient && !visibleButtonClient && (
         <BoxProduct>
           <div id="select-product">
             <label htmlFor="product">Produto:</label>
@@ -206,10 +213,12 @@ function Form({ productList, setProductList }) {
       )}
       {productList.length > 0 && (
         <DeliveryDate>
-          <label htmlFor="deliveryDate">Data de entrega: (DD/MM/AAAA)</label>
+          <label htmlFor="deliveryDate">Data de entrega:</label>
           <input
             id="deliveryDate"
             name="deliveryDate"
+            pattern="\d{2}/\d{2}/\d{4}"
+            placeholder="dd/mm/aaaa"
             onChange={onChange}
             value={form.deliveryDate}
           ></input>
