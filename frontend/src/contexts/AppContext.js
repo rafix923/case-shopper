@@ -2,20 +2,20 @@ import React, { createContext, useState } from "react";
 
 export const AppContext = createContext();
 
-export const AppProvider = ({ children }) => {
-  const [selectedClient, setSelectClient] = useState(null);
-  const [selectedProduct, setSelectProduct] = useState(null);
+export function AppProvider({ children }) {
+  const [selectedClient, setSelectedClient] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   return (
     <AppContext.Provider
       value={{
         selectedClient,
-        setSelectClient,
+        setSelectedClient,
         selectedProduct,
-        setSelectProduct,
+        setSelectedProduct,
       }}
     >
       {children}
     </AppContext.Provider>
   );
-};
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useRequestData } from "../../hooks/useRequestData";
 import { useForm } from "../../hooks/useForm";
@@ -12,8 +12,16 @@ import {
   BoxProduct,
   DeliveryDate,
 } from "./style";
+import { AppContext } from "../../contexts/AppContext";
 
 function Form({ productList, setProductList }) {
+  const {
+    selectedClient,
+    selectedProduct,
+    setSelectedClient,
+    setSelectedProduct,
+  } = useContext(AppContext);
+
   const navigate = useNavigate();
   const [form, onChange, resetState] = useForm({
     client: "",
@@ -44,8 +52,9 @@ function Form({ productList, setProductList }) {
         (client) => client.name === form.client
       );
       setSelectClient(chosenClient);
+      setSelectedClient(chosenClient);
     }
-  }, [dataClient, form.client]);
+  }, [dataClient, form.client, setSelectedClient]);
 
   const registerNewClient = () => {
     const body = {
@@ -62,7 +71,7 @@ function Form({ productList, setProductList }) {
       });
   };
 
-  const selectedClient = () => {
+  const selectedClientUp = () => {
     setVisibleButtonClient(!visibleButtonClient);
   };
 
@@ -72,8 +81,9 @@ function Form({ productList, setProductList }) {
         (product) => product.name === form.product
       );
       setSelectProduct(chosenProduct);
+      setSelectedProduct(chosenProduct);
     }
-  }, [productData, form.product]);
+  }, [productData, form.product, setSelectedProduct]);
 
   const addProduct = () => {
     const newProduct = selectProduct;
@@ -163,7 +173,7 @@ function Form({ productList, setProductList }) {
               <button
                 type="button"
                 onClick={() => {
-                  selectedClient();
+                  selectedClientUp();
                 }}
               >
                 Confirmar
@@ -206,6 +216,7 @@ function Form({ productList, setProductList }) {
               {selectProduct &&
                 parseFloat(selectProduct.price * form.qty).toFixed(2)}
             </p>
+
             {selectProduct &&
               !visibleButtonProduct &&
               selectProduct.qty_stock >= form.qty && (
