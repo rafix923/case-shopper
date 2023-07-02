@@ -37,9 +37,9 @@ produto e a quantidade em estoque.
 
 1) O deploy do projeto foi realizado utilizando a Vercel. [Clique aqui](https://case-shopper-frontend.vercel.app/) para acessar o deploy do projeto.
 
-2) A documentação da API fiz com o Postman e pode ser acessada através deste link:
+2) A documentação da API fiz com o Postman e pode ser acessada através do link abaixo.
 
-https://documenter.getpostman.com/view/22348177/2s93z86NDr
+API: https://documenter.getpostman.com/view/22348177/2s93z86NDr
 
 ## Passos para rodar o projeto localmente
   
