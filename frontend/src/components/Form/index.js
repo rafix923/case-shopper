@@ -91,9 +91,23 @@ function Form({ productList, setProductList }) {
       const deliveryDateDb = `${form.deliveryDate.split("/")[2]} - ${
         form.deliveryDate.split("/")[1]
       }-${form.deliveryDate.split("/")[0]}`;
+
+      const currentDate = new Date();
+      const selectedDate = new Date(
+        parseInt(form.deliveryDate.split("/")[2]),
+        parseInt(form.deliveryDate.split("/")[1]) - 1,
+        parseInt(form.deliveryDate.split("/")[0])
+      );
+
+      if (selectedDate < currentDate) {
+        window.alert("A data de entrega não pode ser anterior à data atual.");
+        return;
+      }
+
       const productListDb = productList.map((p) => {
         return { id: p.id, qty: Number(p.qty) };
       });
+
       const body = {
         fk_client: Number(selectClient.id),
         delivery_date: deliveryDateDb,
