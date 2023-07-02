@@ -9,3 +9,7 @@ export const goToEndPage = (navigate) => {
 export const goToReturnPage = (navigate) => {
   navigate("-1");
 };
+
+export const goToInventoryPage = (navigate) => {
+  navigate("inventory");
+};

@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRequestData } from "../../hooks/useRequestData";
 import { useForm } from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
-import { goToEndPage } from "../../routes/Coordinator";
+import { goToEndPage, goToInventoryPage } from "../../routes/Coordinator";
 import { BASE_URL } from "../../constants/url/baseUrl";
 import {
   BoxClient,
@@ -206,7 +206,6 @@ function Form({ productList, setProductList }) {
               {selectProduct &&
                 parseFloat(selectProduct.price * form.qty).toFixed(2)}
             </p>
-
             {selectProduct &&
               !visibleButtonProduct &&
               selectProduct.qty_stock >= form.qty && (
@@ -217,6 +216,18 @@ function Form({ productList, setProductList }) {
                   }}
                 >
                   Adicionar produto
+                </button>
+              )}
+            {selectProduct &&
+              !visibleButtonProduct &&
+              selectProduct.qty_stock >= form.qty && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    goToInventoryPage(navigate);
+                  }}
+                >
+                  Ver estoque
                 </button>
               )}
             {selectProduct && selectProduct.qty_stock < form.qty && (
