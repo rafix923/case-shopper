@@ -218,18 +218,6 @@ function Form({ productList, setProductList }) {
                   Adicionar produto
                 </button>
               )}
-            {selectProduct &&
-              !visibleButtonProduct &&
-              selectProduct.qty_stock >= form.qty && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    goToInventoryPage(navigate);
-                  }}
-                >
-                  Ver estoque
-                </button>
-              )}
             {selectProduct && selectProduct.qty_stock < form.qty && (
               <h3>Atenção! Produto sem estoque suficiente para esta compra.</h3>
             )}
