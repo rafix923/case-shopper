@@ -35,11 +35,13 @@ produto e a quantidade em estoque.
 
 ## Deploy 
 
-1) O deploy do projeto foi realizado utilizando a Vercel. [Clique aqui](https://case-shopper-frontend.vercel.app/) para acessar o deploy do projeto.
+1) O deploy do projeto foi realizado utilizando a Vercel.
+
+- Cole este link na url do seu navegador: https://case-shopper-frontend.vercel.app/
 
 2) A documentação da API fiz com o Postman e pode ser acessada através do link abaixo.
 
-API: https://documenter.getpostman.com/view/22348177/2s93z86NDr
+- API: https://documenter.getpostman.com/view/22348177/2s93z86NDr
 
 ## Passos para rodar o projeto localmente
   
