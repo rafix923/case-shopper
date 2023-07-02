@@ -8,8 +8,8 @@ function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/end-page" element={<Farewell />} />
-        <Route path="/inventory" element={<InventoryPage />} />
+        <Route path="end-page" element={<Farewell />} />
+        <Route path="inventory" element={<InventoryPage />} />
       </Routes>
     </BrowserRouter>
   );
