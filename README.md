@@ -69,7 +69,7 @@ Instale as dependências necessárias para esse projeto
   npm install
 ```
 
-Acesse o repositório raíz baixado
+Acesse o repositório raiz baixado
 
 ```bash
   cd frontend
