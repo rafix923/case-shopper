@@ -10,7 +10,6 @@ export const useRequestData = (url, headers) => {
   const [visibleButtonProduct, setVisibleButtonProduct] = useState(true);
 
   useEffect(() => {
-    console.log("Ok!");
     setIsLoading(true);
     axios
       .get(url, headers)
