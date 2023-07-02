@@ -20,7 +20,7 @@ estoque.
 - [ ] O sistema também deve ter uma função para mostrar o estoque atual exibindo: Nome do 
 produto e a quantidade em estoque.
 
-## Funcionalidade extras adicionadas:
+## Funcionalidades extras adicionadas:
 
 - ✅ Verificação com AJAX, para garantir que o formato da data inserida pelo usuário seja apenas 'dd/mm/aaaa'.
 Se a data for diferente que isso, aparecerá mensagem na caixa de input informando o erro.
