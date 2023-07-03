@@ -1,5 +1,5 @@
 import React from "react";
-import { HeaderStyled } from "./style";
+import { HeaderStyled, HomeHeaderButton } from "./style";
 import { useNavigate } from "react-router-dom";
 import { goToInventoryPage } from "../../routes/Coordinator";
 
@@ -9,9 +9,12 @@ function Header() {
   return (
     <HeaderStyled>
       <h1 id="header-title">{title}</h1>
-      <button type="button" onClick={() => goToInventoryPage(navigate)}>
+      <HomeHeaderButton
+        type="button"
+        onClick={() => goToInventoryPage(navigate)}
+      >
         Ver estoque
-      </button>
+      </HomeHeaderButton>
     </HeaderStyled>
   );
 }
