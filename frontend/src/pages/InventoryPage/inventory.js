@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { HeaderStyled } from "../../components/Header/style";
 import { useNavigate } from "react-router-dom";
 import { goToHome } from "../../routes/Coordinator";
 import axios from "axios";
+import { InventoryHeaderStyled } from "./style";
 
 function InventoryPage() {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ function InventoryPage() {
   let title = "Case Shopper Hortifruit";
   return (
     <div>
-      <HeaderStyled>
+      <InventoryHeaderStyled>
         <button
           type="button"
           onClick={() => {
@@ -36,7 +36,7 @@ function InventoryPage() {
           Voltar para Home
         </button>
         <h1 id="header-title">{title}</h1>
-      </HeaderStyled>
+      </InventoryHeaderStyled>
       <h2>Estoque</h2>
       <ul>
         {inventory.map((item) => (
