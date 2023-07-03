@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { secondaryColor, thirdColor } from "../../constants/colors/colors";
 
-export const HeaderStyled = styled.div`
+export const InventoryHeaderStyled = styled.div`
 display: flex;
 align-items: center;
 justify-content: center;
@@ -11,6 +11,14 @@ color: ${thirdColor};
 text-transform: uppercase;
 letter-spacing: 1px;
 font-size: 1rem;
+
+button{
+    background-color: ${thirdColor};
+    margin-right: 10px;
+    padding: 6px;
+    border: 1px solid grey;
+    border-radius: 9px;
+ }
 
 // Tablets
 @media (max-width: 768px) { 
