@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRequestData } from "../../hooks/useRequestData";
 import { useForm } from "../../hooks/useForm";
 import { useNavigate } from "react-router-dom";
-import { goToEndPage } from "../../routes/Coordinator";
+import { goToCheckoutPage } from "../../routes/Coordinator";
 import { BASE_URL } from "../../constants/url/baseUrl";
 import {
   BoxClient,
@@ -117,7 +117,7 @@ function Form({ productList, setProductList }) {
         .post(`${BASE_URL}/order/add/new`, body, {})
         .then((response) => {
           console.log(response);
-          goToEndPage(navigate);
+          goToCheckoutPage(navigate);
         })
         .catch((error) => {
           console.log(error.message);
