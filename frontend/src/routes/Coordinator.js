@@ -2,8 +2,8 @@ export const goToHome = (navigate) => {
   navigate("/");
 };
 
-export const goToEndPage = (navigate) => {
-  navigate("end-page");
+export const goToCheckoutPage = (navigate) => {
+  navigate("checkout-page");
 };
 
 export const goToReturnPage = (navigate) => {

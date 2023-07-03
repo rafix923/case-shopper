@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { goToHome } from "../../routes/Coordinator";
 
-function Farewell() {
+function Checkout() {
   let title = "Seu pedido foi registrado com sucesso!";
   const navigate = useNavigate();
   setTimeout(() => {
@@ -15,4 +15,4 @@ function Farewell() {
   );
 }
 
-export default Farewell;
+export default Checkout;
