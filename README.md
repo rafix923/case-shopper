@@ -17,7 +17,7 @@ não queira mais.
 - ✅ Cada pedido salvo deve debitar a quantidade do produto correspondente de seu estoque.
 - ✅ O sistema deve alertar o usuário caso a quantidade solicitada não esteja disponível no 
 estoque.
-- [ ] O sistema também deve ter uma função para mostrar o estoque atual exibindo: Nome do 
+- ✅ O sistema também deve ter uma função para mostrar o estoque atual exibindo: Nome do 
 produto e a quantidade em estoque.
 
 ## Funcionalidades extras adicionadas:
