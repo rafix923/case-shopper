@@ -2,9 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { goToHome } from "../../routes/Coordinator";
 import axios from "axios";
-import { InventoryHeaderStyled } from "./style";
+import {
+  InventoryHeaderButton,
+  InventoryHeaderStyled,
+  InventoryMainContainer,
+  InventorySubtitle,
+  OrderedListContainer,
+} from "./style";
 
 function InventoryPage() {
+  let title = "Case Shopper Hortifruit";
+
   const navigate = useNavigate();
   const [inventory, setInventory] = useState([]);
 
@@ -23,29 +31,30 @@ function InventoryPage() {
     fetchInventory();
   }, []);
 
-  let title = "Case Shopper Hortifruit";
   return (
-    <div>
+    <InventoryMainContainer>
       <InventoryHeaderStyled>
-        <button
+        <InventoryHeaderButton
           type="button"
           onClick={() => {
             goToHome(navigate);
           }}
         >
           Voltar para Home
-        </button>
+        </InventoryHeaderButton>
         <h1 id="header-title">{title}</h1>
       </InventoryHeaderStyled>
-      <h2>Estoque</h2>
-      <ul>
+      <InventorySubtitle>Estoque</InventorySubtitle>
+  <OrderedListContainer>
+  <ol>
         {inventory.map((item) => (
           <li key={item.name}>
             {item.name} - Quantidade: {item.qty_stock}
           </li>
         ))}
-      </ul>
-    </div>
+      </ol>
+  </OrderedListContainer>
+    </InventoryMainContainer>
   );
 }
 
