@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { secondaryColor, thirdColor } from "../../constants/colors/colors";
 
-
-
 export const HeaderStyled = styled.div`
 display: flex;
 align-items: center;
@@ -29,4 +27,12 @@ font-size: 1rem;
       font-family: 'Times New Roman', Times, serif;
     }
   }
+`;
+
+export const HomeHeaderButton = styled.button`
+    background-color: ${thirdColor};
+    margin-left: 10px;
+    padding: 6px;
+    border: 1px solid grey;
+    border-radius: 9px;
 `;
