@@ -26,7 +26,7 @@ produto e a quantidade em estoque.
 Se a data for diferente que isso, aparecerá mensagem na caixa de input informando o erro.
 - ✅ Tratamento de erro para garantir que o usuário não coloque a data de entrega menor do que a data atual.
   
-## Stack Utilizada
+## Stack e Ferramentas que Utilizei
 
 ![REACT](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
