@@ -2,7 +2,7 @@
 
 ## Sobre o Projeto
 
-Este é um do projeto de finalização do bootcamp de Desenvolvimento Web FullStack, baseado no teste técnico da empresa Shopper. Neste projeto foi aplicado conhecimentos em props, hooks, modelagem de banco de dados, criação e consumo de APIs. 
+Este é um dos projetos de finalização do bootcamp de Desenvolvimento Web FullStack, baseado no teste técnico da empresa Shopper. Neste projeto foi aplicado conhecimentos em props, hooks, modelagem de banco de dados, criação e consumo de APIs. 
 
 ## Funcionalidades
 
