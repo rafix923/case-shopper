@@ -5,6 +5,8 @@ display: flex;
 justify-content: center;
 width: 100vw;
 color: #fff;
+font-size: 1.4rem;
+letter-spacing: 0.20rem;
 `;
 
 export const Sum = styled.p`
